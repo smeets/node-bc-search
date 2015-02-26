@@ -13,7 +13,7 @@ see example...
  - `https.request(bandSearch("hello i am query"), callback).end()`
 
 example
-```
+``` js
 var bandSearch = require('./bc-search.js')
   , https = require('https')
 
