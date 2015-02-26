@@ -1,0 +1,17 @@
+{
+  "name": "bc-search",
+  "version": "1.0.0",
+  "description": "search the bandcamp, the one and only",
+  "main": "bc-search.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "search",
+    "bandcamp"
+  ],
+  "author": "Axel Smeets",
+  "license": "MIT"
+}
