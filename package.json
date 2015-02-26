@@ -1,6 +1,6 @@
 {
   "name": "bc-search",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "search the bandcamp, the one and only",
   "main": "bc-search.js",
   "dependencies": {},
