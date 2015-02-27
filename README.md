@@ -40,7 +40,7 @@ https.request(bandSearch("funky music"), callback.bind({ callback : done })).end
 ```
 
 each `results` hit is of the form:
-``` json
+```js
 {
   url: 'https://sincerelyjohn.bandcamp.com/track/funky-music-featuring-mc',
   weight: 0,
