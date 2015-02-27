@@ -14,7 +14,7 @@ see example...
 
 example
 ``` js
-var bandSearch = require('./bc-search.js')
+var bandSearch = require('bc-search')
   , https = require('https')
 
 function callback(res) {
@@ -30,9 +30,32 @@ function callback(res) {
 }
 
 function done(result) {
+  // Object.keys(result) --> [result, time_ms]
+  // result.results --> array of autocompletions aka search hits
+  // result.time_ms --> query response time (ms)
   console.log(result)
 }
 
 https.request(bandSearch("funky music"), callback.bind({ callback : done })).end()
+```
 
+each `results` hit is of the form:
+```
+{
+  url: 'https://sincerelyjohn.bandcamp.com/track/funky-music-featuring-mc',
+  weight: 0,
+  band_id: 3070742134,
+  name: 'Funky Music featuring MC',
+  img: 'https://f1.bcbits.com/img/a3657732646_3.jpg',
+  band_name: 'Sincerely, John',
+  part: 't',
+  id: 2981519852,
+  album_name: 'Human Theory the Album',
+  score: -4075,
+  type: 't',
+  img_id: null,
+  art_id: 3657732646,
+  album_id: 2271697086,
+  bias: 1 
+}
 ```
