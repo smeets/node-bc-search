@@ -30,7 +30,7 @@ function callback(res) {
 }
 
 function done(result) {
-  // Object.keys(result) --> [result, time_ms]
+  // Object.keys(result) --> [results, time_ms]
   // result.results --> array of autocompletions aka search hits
   // result.time_ms --> query response time (ms)
   console.log(result)
@@ -40,7 +40,7 @@ https.request(bandSearch("funky music"), callback.bind({ callback : done })).end
 ```
 
 each `results` hit is of the form:
-```
+``` json
 {
   url: 'https://sincerelyjohn.bandcamp.com/track/funky-music-featuring-mc',
   weight: 0,
