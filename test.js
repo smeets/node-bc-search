@@ -9,7 +9,7 @@ function crash(why) {
 
 function checkKeys(hits) {
 	hits.results || crash("no 'results' key found")
-	hits.time_ms || crash("no 'time_ms' key found")
+	(++hits.time_ms) || crash("no 'time_ms' key found")
 }
 
 function collect(res) {
