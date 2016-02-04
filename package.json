@@ -1,6 +1,6 @@
 {
   "name": "bc-search",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "search the bandcamp, the one and only",
   "repository": {
     "type": "git",
@@ -10,7 +10,7 @@
   "dependencies": {},
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test.js"
   },
   "keywords": [
     "search",
