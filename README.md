@@ -23,19 +23,23 @@ var http = require('http')
 var search = require('bc-search')
 
 function suggest(keywords, callback) {
-  http.request(search('funky music'), function(res) {
-    var data = ''
+    http.request(search(keywords), function(res) {
+        var data = ''
 
-    res.on('data', function(chunk) {
-      data += chunk
-    })
+        res.on('data', function(chunk) {
+            data += chunk
+        })
 
-    res.on('end', function() {
-      // data = { results: [<hit>], time_ms: int }
-      callback(JSON.parse(data))
-    })
-  }).end()
+        res.on('end', function() {
+            callback(JSON.parse(data))
+        })
+    }).end()
 }
+
+suggest('funky music', function(data) {
+    // data = { results: [<hit>], time_ms: int }
+    console.log(data)
+})
 ```
 
 each `results` hit is of the form:
