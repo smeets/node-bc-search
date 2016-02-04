@@ -4,7 +4,7 @@
   "description": "search the bandcamp, the one and only",
   "repository": {
     "type": "git",
-    "url": "https://github.com/MurlocBrand/node-bc-search"
+    "url": "https://github.com/murlocbrand/node-bc-search.git"
   },
   "main": "index.js",
   "dependencies": {},
@@ -17,5 +17,9 @@
     "bandcamp"
   ],
   "author": "Axel Smeets",
-  "license": "MIT"
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/murlocbrand/node-bc-search/issues"
+  },
+  "homepage": "https://github.com/murlocbrand/node-bc-search#readme"
 }
