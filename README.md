@@ -1,17 +1,14 @@
 bc-search
 =========
-search bandcamp using nodejs
+search bandcamp using nodejs (**last verified test 2017-11-20**)
 
 ## install
  - `npm install bc-search`
 
 ## note
-The interesting bits of this module are the path and user agent.
+The interesting bits of this module are the `path` and `User-Agent`.
 
 They were found by using Bandcamp's Android app with a proxied Wi-Fi connection.
-
-## usage
-the package returns a function. the returned function returns a https request options object when called. use http/https module to do actual request and callback logging.
 
 see example...
  - `var search = require('bc-search')`
@@ -19,9 +16,30 @@ see example...
 
 example
 ``` js
+/**
+ *  hip nodejs style (with request)
+ */
+const request = require('request')
+const search = require('bc-search')
+
+let { hostname, path, headers } = search('funky music')
+
+request({
+    url: `https://${hostname}${path}`,
+    headers: headers
+}).then(handle_results)
+
+
+// data = { results: [<hit>], time_ms: int }
+function handle_results(data) {
+    console.log(data)
+}
+
+/**
+ * old nodejs style
+ */
 var http = require('http')
 var search = require('bc-search')
-
 function suggest(keywords, callback) {
     http.request(search(keywords), function(res) {
         var data = ''
@@ -36,29 +54,37 @@ function suggest(keywords, callback) {
     }).end()
 }
 
-suggest('funky music', function(data) {
-    // data = { results: [<hit>], time_ms: int }
-    console.log(data)
-})
+suggest('funky music', handle_results)
 ```
 
-each `results` hit is of the form:
+**<hit>**
+The following keys are (somewhat) identified:
+ * `score`: search score
+ * `url`: link to resource
+ * `id`: resource id
+ * `type`: `t` for track, `a` for album
+ * `img`: link to thumbnail
+ * `art_id`: image base id?
+ * `name`: name of the resource (depends on type)
+ * `album_name`: only present if `type=t`
+ * `album_id`: only present if `type=t`
+ * `band_name`: hmm, what in the world can this be?
+ * `band_id`: id of band, yes it it true
+
 ```js
-{
-  url: 'https://sincerelyjohn.bandcamp.com/track/funky-music-featuring-mc',
-  weight: 0,
-  band_id: 3070742134,
-  name: 'Funky Music featuring MC',
-  img: 'https://f1.bcbits.com/img/a3657732646_3.jpg',
-  band_name: 'Sincerely, John',
-  part: 't',
-  id: 2981519852,
-  album_name: 'Human Theory the Album',
-  score: -4075,
-  type: 't',
-  img_id: null,
-  art_id: 3657732646,
-  album_id: 2271697086,
-  bias: 1
+{ score: -4004,
+    img: 'https://f4.bcbits.com/img/a3844406641_3.jpg',
+    weight: 0,
+    band_name: 'The Dongles',
+    img_id: null,
+    band_id: 642255529,
+    id: 2233893224,
+    stat_params: 'search_item_id=2233893224&search_item_type=a&search_match_part=%3F&search_page_id=280863357&search_page_no=0&search_rank=100&search_sig=fe01036350c746db0f725b5a06d2f38d',
+    type: 'a',
+    bias: 1.02,
+    url: 'https://thedongles.bandcamp.com/album/junky-music',
+    part: 't',
+    art_id: 3844406641,
+    name: 'Junky Music'
 }
 ```
