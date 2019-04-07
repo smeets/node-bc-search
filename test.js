@@ -19,10 +19,15 @@ function collect(res) {
 		data += chunk
 	})
 
-	res.on('end', function (){
+	res.on('end', function () {
 		checkKeys(JSON.parse(data))
 	})
 }
 
 https.request(search('funky music'), collect).end()
 http.request(search('funky music'), collect).end()
+
+process.on('exit', function (code) {
+	if (!code)
+		console.log('test pass')
+})
