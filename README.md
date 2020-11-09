@@ -1,6 +1,6 @@
 bc-search
 =========
-search bandcamp using nodejs (**last verified test 2019-04-07**)
+search bandcamp using nodejs (**last verified test 2020-11-09**)
 
 ## install
  - `npm install bc-search`
